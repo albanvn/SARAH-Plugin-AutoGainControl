@@ -1,0 +1,23 @@
+{
+  "modules" : { 
+    "AutoGainControl"  : {
+      "description": "Controle automatique du gain du micro et du haut parleur en fonction du bruit ambiant capté par la balise Netatmo",
+      "version": "1.0",
+	  "netatmo_id": "",
+	  "min_db": "36",
+	  "min_vol": "30",
+	  "max_gain_mic": "100",
+	  "max_db": "60",
+	  "max_vol": "60",
+	  "min_gain_mic": "25",
+	  "mic_card": "2",
+	  "mic_device": "réseau de microphones",
+	  "app_name": "WSRMacro_Kinect.exe",
+	  "time_range1": "55%=1000-1900",
+	  "time_range2": "40%=1900-2300",
+	  "time_range3": "",
+	  "time_range4": "",
+	  "time_range5": ""
+    }
+  }
+}

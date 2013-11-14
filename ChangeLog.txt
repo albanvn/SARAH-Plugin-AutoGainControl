@@ -1,0 +1,26 @@
+********************************************
+* Plugin AutoGainControl for SARAH project *
+* http://encausse.wordpress.com/s-a-r-a-h/ *
+* Author:Alban Vidal-Naquet                *
+* Email:alban@albanvn.net                  *
+********************************************
+
+*****************
+* Changelog.txt *
+*****************
+
+V1.1 - 14/11/2013
+-----------------
+
+  First public version
+  -Add functions to enable/disable automatic gain control
+  -Add functions to control mic gain and vol level by http request
+  -Add silent mode to disable SARAH.speak call
+  -Add time range to set volume level at different period during day and night
+  -Add customloc.js to make easier speeched text modification and text localisation
+
+V1.0 - 6/10/2013
+-----------------
+  Initial release, not diffused
+  
+

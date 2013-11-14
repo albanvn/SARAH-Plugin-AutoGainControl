@@ -1,0 +1,48 @@
+<div id="AutoGainControl">  
+	<div class="span11">
+	<b>Attention: Pour fonctionner de manière optimum et en étalonnage automatique, ce plugin nécessite la présence de balise NETATMO (<a href="http://www.netatmo.com">www.netatmo.com</a>). Si vous n'avez pas de balise NETATMO, seul le controle du volume sonore selon la valeur des plages horaires définies ne sera disponible.</b><BR><BR>
+	Le plugin AutoGainControl permet de controler le niveau du volume sonore du PC et le gain du microphone en fonction de l'activité sonore remontée par une balise NETATMO (La balise principale uniquement, celle qui est capable d'enregistrer le niveau sonore d'une piéce). L'étalonnage automatique est ainsi fait toutes les 5 minutes, pour le volume sonore (de l'application WSRMacro ou le volume général selon réglages) et pour le gain du micro (Kinect ou Microphone standard selon réglages). Une autre fonctionnalité de ce plugin est le réglage du volume principale en fonction de plages horaires definissant des niveaux sonores différents<BR><BR>
+	Pour que ce plugin fonctionne, il faut tout d'abord que vous ayez installé le plugin Netatmo2 (v1.5 minimum ou v1.6 ou plus conseillé). Vous trouverez le plugin Netatmo2 sur le store de SARAH ou en suivant le lien <a href="https://github.com/albanvn/SARAH-Plugin-Netatmo/raw/master/SARAH-Plugin-Netatmo2.zip">https://github.com/albanvn/SARAH-Plugin-Netatmo/raw/master/SARAH-Plugin-Netatmo2.zip</a><BR><BR>
+	<H4>Paramétrages du plugin</H4>
+	Par ailleurs, il vous faudra paramètrer le plugin; Notamment le <b>champs Netatmo_id</b> qui permet d'identifier le nom de la balise principale NETATMO (balise la plus grosse, celle qui remonte les informations sur le bruit ambiant). L'ID rentré ici est le nom de la balise que vous aurez donné sur le site NETATMO à la balise principale. <b>Si ce champ est vide ou si les informations NETATMO sont introuvables, le plugin fonctionneront uniquement en mode plages horaires (cf champs time_range{X} ci-dessous, les autres champs sont uniquement necessaire pour NETATMO).</b><BR><BR>
+	Voici une description des autres champs paramétrables du plugin:<BR>
+	<ul>
+	<li><b>min_db,min_vol,max_gain_mic</b>: Ces 3 variables fonctionnent ensemble; Elles situent les réglages lorsque le bruit ambiant est minimum. Ainsi si il y a [min_db] décibels de bruit, le volume du son sera positionné à  [min_vol] % et le gain du microphone sera de [max_gain_mic] %</li>
+	<li><b>max_db,max_vol,min_gain_mic</b>: Ces 3 variables fonctionnent ensemble; Elles situent les réglages lorsque le bruit ambiant est maximum. Ainsi si il y a [max_db] décibels de bruit, le volume du son sera positionné à  [max_vol] % et le gain du microphone sera de [min_gain_mic] %</li>
+	<b>Pour ces 6 variables précédentes, tous niveaux de bruit intérmediaires (compris entre [min_db] et [max_db]), le plugin calculera via une régles de 3 le volume du son et le gain du microphone.</b><BR><BR>
+	<li><b>mic_card</b>: identifie la carte son du microphone (1 si vous n'avez qu'une seule carte son, 2 pour une Kinect (et que vous avez une carte son),...). Ce paramétre est positionné à 2 par défaut.</li>
+	<li><b>mic_device</b>: identifie le nom de la source sonore microphone (par défaut 'réseau de microphones' pour une Kinect). Allez voir dans les propriétés du son pour trouver la bonne valeur à mettre ou utilisez l'outils fourni dans le répertoire bin de ce plugin en ligne de commande: <code>nircmdc.exe showsounddevices</code>, affichera les différentes sorties son (doc en ligne de l'outil:<a href="http://www.nirsoft.net/utils/nircmd2.html#using">http://www.nirsoft.net/utils/nircmd2.html#using)</a></li>
+	<li><b>app_name</b>: est le nom du binaire SARAH que vous utilisez pour la reconnaissance vocale: WSRMacro_Kinect.exe pour une reconnaissane via Kinect (par défaut) ou WSRMacro.exe pour une reconnaissance depuis microphone standard. Si ce champ est renseigné, le plugin ne modifiera que le niveau sonore de l'application SARAH et n'impactera pas le volume général de l'ordinateur. Si le champ est vide, cela sera le niveau général du volume qui sera impacté.</li>
+	<li><b>time_range{X}</b>: permet de definir des plages horaires pour le réglage du volume sonore (<i>Ne fonctionnera uniquement si la variable [app_name] est nom vide</i>). La syntaxe est "XXX%=HHMM-HHMM". XXX est le niveau sonore du volume souhaité en % (0-100%) et HHMM le début ou la fin de la plage horaire. Ainsi "50%=1000-2000" indiquera que de 10 heure à 20 heure le niveau du volume sonore sera fixé à 50%. Vous pouvez fixer jusqu'à 5 plages horaires distinctes par jour.</li>
+	</ul><BR>
+	<H4>Commandes reconnues par SARAH</H4>
+	Voici les commandes reconnues par SARAH:<BR><BR>
+	<ul>
+		<li><b>Quel est l'étalonnage du son ?</b>: SARAH donne les réglages sonore (volume et microphone)</li>
+		<li><b>Etalonne le son</b>: SARAH étalonne les réglages sonores (volume et microphone) à la demande selon les dernières statistiques de bruit remontées.</li>
+		<li><b>Désactive le réglage automatique du niveau sonore</b>:L'étalonnage automatique du volume du son et du gain du microphone est suspendu.</li>
+		<li><b>Active le réglage automatique du niveau sonore</b>:L'étalonnage automatique du volume du son et du gain du microphone est relancé.</li>
+	</ul><BR>
+	<H4>Documentation développeurs et utilisation dans d'autres plugins.</H4>
+	<BR>
+	Vous pouvez envoyer des commandes au plugin AutoGainControl via des requetes HTTP ou via le système de lancement inter plugin de SARAH (cf <a href="http://encausse.wordpress.com/2013/05/18/sarah-modules-avances/">http://encausse.wordpress.com/2013/05/18/sarah-modules-avances/</a>, section "Lancer un plugin").<BR><BR>
+	Voici l'URL exaustive (avec tous les champs possibles) de la requete:<BR><BR>
+	<code>http://[IP DE SARAH]/sarah/AutoGainControl?mode=[mode]&value=[value]&silent=[silent]</code><BR><BR>
+	où:<BR><BR>
+	<i>[mode]</i> peut prendre les valeurs:
+	<ul>
+	<li>status: demande à SARAH de vocaliser l'état des réglages sonores,</li>
+	<li>go: demande à SARAH d'étalonner les réglages sonores selon les dernières statistique remontées,</li>
+	<li>setmainvol: permet de fixer le volume principale du PC à la valeur [value] en %,</li>
+	<li>setvol: permet de fixer le volume de l'application à la valeur [value] en %,</li>
+	<li>setmic: permet de fixer le gain du microphone à la valeur [value] en %,</li>
+	<li>disableauto: permet de désactiver l'étalonnage automatique des réglages sonores,</li>
+	<li>enableauto: permet d'activer l'étalonnage automatique des réglages sonores.</li>
+	</ul><BR>
+	la variable <i>[value]</i> n'est utilisé que pour les modes: setmainvol, setvol, setmic.<BR>
+	la variable <i>[silent]</i> si fixé à 1 permet d'executer les ordres sans que SARAH vocalise l'action réalisée (utile pour l'intégration avec d'autres plugins).<BR>
+	<BR><BR>
+	Voila j'espère que le plugin vous plaira et qu'il vous donnera satisfaction.<BR>
+	Vous pouvez me contacter pour me faire part de vos commentaires où des améliorations que vous aimeriez voir (email:alban@albanvn.net)<BR>
+	</div> 
+</div>

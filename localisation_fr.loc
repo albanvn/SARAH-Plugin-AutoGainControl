@@ -1,0 +1,9 @@
+IDNONETATMOFIND#Il n'y a pas de balise NETATMO défini ou je ne la trouve pas
+OKLETSGO#Très bien je m'en occupe.
+STATUS#Le reglage du volume de l'application est à %VOL% pour cent et le microphone à %MIC% pour cent. 
+STATUS2#Le volume général est à %MAINVOL% pour cent.
+DISABLEAUTO#Très bien je désactive le réglage automatique du niveau sonore.
+ENABLEAUTO#Très bien j'active le réglage automatique du niveau sonore.
+SETMAINVOLUME#Très bien je fixe le volume principale à %VALUE% pour cent.
+SETVOLUME#Très bien je fixe le volume de l'application à %VALUE% pour cent.
+SETMIC#Très bien je fixe le micro à %VALUE% pour cent.

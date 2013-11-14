@@ -1,0 +1,18 @@
+<% stylesheet('assets/'+key+'/portlet.css') %>
+<% 
+  var AGC = SARAH.ConfigManager.getModule(key); 
+  var status  = AGC.getStatus(SARAH.ConfigManager.getConfig().modules.AutoGainControl, SARAH); 
+%>
+
+<div class="logo">
+  <a href="sarah/<%=key%>?mode=status" class="ajax"><img src="/assets/<%=key%>/images/AGC.png" title="Donne les niveaux sonores"></a>
+</div>
+
+<div class="text">
+  <br/><span class="title">AGC</span>
+  <br/><div class="author">by AVN</div>
+  <span class="status">Noise: <%= status.last %> dB</span>
+  <br/><span class="status">Main Vol:<%= status.mainvol %>%</span>
+  <br/><span class="status">Vol:<%= status.vol %>% Mic:<%= status.mic %>%</span>
+  <br/><span class="status">Auto:<% if (status.auto==1) { %>on<% } else { %>off <% } %></span>
+</div>
