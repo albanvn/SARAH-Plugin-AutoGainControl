@@ -17,7 +17,7 @@ const gs_timer=60*5;
 const gs_maxhisto=4;
 
 // Variables
-var loc=require("../customloc.js").init(__dirname);
+var loc=require("./customloc.js").init(__dirname);
 
 var g_index=-1;
 var g_handle=-1;
