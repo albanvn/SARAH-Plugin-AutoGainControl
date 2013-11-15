@@ -2,7 +2,7 @@
 ******************************************************
 * File:AutoGainControl.js
 * Date:6/10/2013
-* Version: 1.0
+* Version: 1.1
 * Author: Alban Vidal-Naquet (alban@albanvn.net)
 * Sarah plugin for Automatic Gain Control
 ******************************************************

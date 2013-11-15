@@ -2,7 +2,7 @@
   "modules" : { 
     "AutoGainControl"  : {
       "description": "Controle automatique du gain du micro et du haut parleur en fonction du bruit ambiant capté par la balise Netatmo",
-      "version": "1.0",
+      "version": "1.1",
 	  "netatmo_id": "",
 	  "min_db": "36",
 	  "min_vol": "30",
