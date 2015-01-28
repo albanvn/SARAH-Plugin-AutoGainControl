@@ -29,7 +29,7 @@ var g_lastdb="---";
 var g_nircmdc="";
 var g_oldvalue=0;
 var g_auto=1;
-var g_debug=0;
+var g_debug=4;
 
 exports.init = function(SARAH)
 {
@@ -231,11 +231,16 @@ function analyseData(ondemand, config, NetatmoInfo, SARAH)
   {
 	  if (g_index==-1)
 		for (i=0;i<NetatmoInfo.names.length;i++)
-		  if (NetatmoInfo.names[i]==config.netatmo_id && NetatmoInfo.types[i]=="NAMain")
+        {
+          if ((g_debug&4)!=0)
+            console.log("AutoGainControl: Netatmo #"+i+" : \""+NetatmoInfo.names[i]+"\" ; "+NetatmoInfo.types[i]+" ; "+NetatmoInfo.values[i]);
+		  if (g_index==-1 && NetatmoInfo.names[i]==config.netatmo_id && NetatmoInfo.types[i]=="NAMain")
 		  {
+            if ((g_debug&4)!=0)
+                console.log("AutoGainControl: Found "+NetatmoInfo.names[i]);
 			g_index=i;
-			break;
 		  }
+        }
 	  if (g_index==-1)
 	  {
 		console.log("AutoGainControl: Can not find device '"+config.netatmo_id+"' with type 'NAMain'");
